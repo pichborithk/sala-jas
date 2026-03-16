@@ -1,0 +1,13 @@
+type Album {
+    id: String!
+    title: String!
+
+    tracks: [Track!]
+    artists: [Artist!]
+    production: Production
+}
+
+extend type Query {
+    albums: [Album!]
+    album(id: String!): Album
+}

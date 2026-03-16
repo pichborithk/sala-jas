@@ -1,0 +1,17 @@
+type Track {
+    id: String!
+    title: String!
+    audio_url: String
+    download_url: String
+    cover_url: String
+    artist: String
+
+    artists: [Artist!]
+    album: Album
+    production: Production
+}
+
+extend type Query {
+    tracks: [Track!]
+    track(id: String!): Track
+}

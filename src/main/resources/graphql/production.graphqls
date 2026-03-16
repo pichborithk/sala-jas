@@ -1,0 +1,45 @@
+type Production {
+    id: String!
+    name: String!
+
+    artists: [Artist!]
+    albums: [Album!]
+    tracks: [Track!]
+}
+
+type ProductionSummary {
+    id: String!
+    name: String!
+}
+
+type ProductionsSummaryResponse {
+    status: String!
+    code: Int!
+    message: String!
+    productions: [ProductionSummary!]
+}
+
+type ProductionResponse {
+    status: String!
+    code: Int!
+    message: String!
+    production: Production
+}
+
+type ProductionSummaryResponse {
+    status: String!
+    code: Int!
+    message: String!
+    production: ProductionSummary
+}
+
+extend type Query {
+    getProductions: ProductionsSummaryResponse!
+#    getProductionById(id: String!): ProductionResponse!
+}
+
+#extend type Mutation {
+#    createProduction(name: String!): ProductionSummaryResponse!
+#
+#    deleteProductionById(id: String!): ProductionSummaryResponse!
+#}
