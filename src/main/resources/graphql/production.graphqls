@@ -2,44 +2,59 @@ type Production {
     id: String!
     name: String!
 
-    artists: [Artist!]
-    albums: [Album!]
-    tracks: [Track!]
+    artists: [ProductionArtist!]
+    albums: [ProductionAlbums!]
+#    tracks: [ProductionTrack!]
 }
 
-type ProductionSummary {
+type ProductionAlbums {
+    id: String!
+    title: String!
+}
+
+type ProductionArtist {
     id: String!
     name: String!
 }
 
-type ProductionsSummaryResponse {
-    status: String!
-    code: Int!
-    message: String!
-    productions: [ProductionSummary!]
+type ProductionTrack {
+    id: String!
+    title: String!
+    audio_url: String
+    download_url: String
+    cover_url: String
+    artist: String
 }
 
-type ProductionResponse {
-    status: String!
-    code: Int!
-    message: String!
-    production: Production
-}
+#type ProductionsSummaryResponse {
+#    status: String!
+#    code: Int!
+#    message: String!
+#    productions: [ProductionSummary!]
+#}
 
-type ProductionSummaryResponse {
-    status: String!
-    code: Int!
-    message: String!
-    production: ProductionSummary
-}
+#type ProductionResponse {
+#    status: String!
+#    code: Int!
+#    message: String!
+#    production: Production
+#}
+
+#type ProductionSummaryResponse {
+#    status: String!
+#    code: Int!
+#    message: String!
+#    production: ProductionSummary
+#}
 
 extend type Query {
-    getProductions: ProductionsSummaryResponse!
-#    getProductionById(id: String!): ProductionResponse!
+    getProductions: Production!
+
+    getProductionById(id: String!): Production!
 }
 
-#extend type Mutation {
-#    createProduction(name: String!): ProductionSummaryResponse!
-#
-#    deleteProductionById(id: String!): ProductionSummaryResponse!
-#}
+extend type Mutation {
+    createProduction(name: String!): Production!
+
+    deleteProductionById(id: String!): Production!
+}

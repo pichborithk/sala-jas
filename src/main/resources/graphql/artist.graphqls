@@ -2,9 +2,28 @@ type Artist {
     id: String!
     name: String!
 
-    tracks: [Track!]
-    albums: [Album!]
-    productions: [Production!]
+    tracks: [ArtistTrack!]
+    albums: [ArtistAlbum!]
+    productions: [ArtistProduction!]
+}
+
+type ArtistTrack {
+    id: String!
+    title: String!
+    audio_url: String
+    download_url: String
+    cover_url: String
+    artist: String
+}
+
+type ArtistAlbum {
+    id: String!
+    title: String!
+}
+
+type ArtistProduction {
+    id: String!
+    name: String!
 }
 
 extend type Query {
@@ -13,21 +32,5 @@ extend type Query {
 }
 
 extend type Mutation {
-
     createArtist(name: String!): Artist
-
-    addArtistToTrack(
-        trackId: String!
-        artistId: String!
-    ): Track
-
-    addArtistToAlbum(
-        albumId: String!
-        artistId: String!
-    ): Album
-
-    addArtistToProduction(
-        productionId: String!
-        artistId: String!
-    ): Production
 }

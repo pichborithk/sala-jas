@@ -2,12 +2,31 @@ type Album {
     id: String!
     title: String!
 
-    tracks: [Track!]
-    artists: [Artist!]
-    production: Production
+    tracks: [AlbumTrack!]
+    artists: [AlbumArtist!]
+    production: AlbumProduction!
+}
+
+type AlbumTrack {
+    id: String!
+    title: String!
+    audio_url: String
+    download_url: String
+    cover_url: String
+    artist: String
+    artists: [AlbumArtist!]
+}
+
+type AlbumArtist {
+    id: String!
+    name: String!
+}
+
+type AlbumProduction {
+    id: String!
+    name: String!
 }
 
 extend type Query {
-    albums: [Album!]
-    album(id: String!): Album
+    getAlbumById(id: String!): Album!
 }
