@@ -1,5 +1,6 @@
 package dev.pichborithk.sala.jas.model
 
+import jakarta.persistence.CascadeType
 import jakarta.persistence.Entity
 import jakarta.persistence.FetchType
 import jakarta.persistence.GeneratedValue
@@ -27,13 +28,13 @@ class Track(
   @UuidGenerator
   var id: String? = null
 
-  @ManyToMany(fetch = FetchType.LAZY)
+  @ManyToMany(fetch = FetchType.LAZY, cascade = [CascadeType.PERSIST])
   @JoinTable(
     name = "track_artist",
     joinColumns = [JoinColumn(name = "track_id")],
     inverseJoinColumns = [JoinColumn(name = "artist_id")]
   )
-  var artists: MutableSet<Artist> = mutableSetOf()
+  var artists: MutableList<Artist> = mutableListOf()
 
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "album_id")

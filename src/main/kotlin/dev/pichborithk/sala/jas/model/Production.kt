@@ -33,5 +33,5 @@ class Production(
     joinColumns = [JoinColumn(name = "production_id")],
     inverseJoinColumns = [JoinColumn(name = "artist_id")]
   )
-  var artists: MutableSet<Artist> = mutableSetOf()
+  var artists: MutableList<Artist> = mutableListOf()
 }

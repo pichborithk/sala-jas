@@ -20,11 +20,11 @@ class Artist(
   var id: String? = null
 
   @ManyToMany(fetch = FetchType.LAZY, mappedBy = "artists")
-  var tracks: MutableSet<Track> = mutableSetOf()
+  var tracks: MutableList<Track> = mutableListOf()
 
   @ManyToMany(fetch = FetchType.LAZY, mappedBy = "artists")
-  var albums: MutableSet<Album> = mutableSetOf()
+  var albums: MutableList<Album> = mutableListOf()
 
   @ManyToMany(fetch = FetchType.LAZY, mappedBy = "artists")
-  var productions: MutableSet<Production> = mutableSetOf()
+  var productions: MutableList<Production> = mutableListOf()
 }

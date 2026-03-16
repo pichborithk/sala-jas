@@ -1,6 +1,5 @@
 package dev.pichborithk.sala.jas.service
 
-import dev.pichborithk.sala.jas.model.Artist
 import dev.pichborithk.sala.jas.model.Production
 import dev.pichborithk.sala.jas.repository.AlbumRepository
 import dev.pichborithk.sala.jas.repository.ArtistRepository
@@ -17,18 +16,20 @@ class ProductionService(
   private final val artistRepository: ArtistRepository,
 ) {
 
-  fun getProductions(): List<Production> {
+  fun getProductions(): MutableList<Production> {
     return productionRepository.findAll()
   }
 
   fun getProductionById(id: String): Production? {
-    return productionRepository.findByIdOrNull(id)
+    val production = productionRepository.findByIdOrNull(id)
+//    production?.let {
+//      production.albums = albumRepository.findByProductionId(id)
+//    }
+    return production
   }
 
   fun createProduction(name: String): Production {
-    val artist = Artist("test_artist")
     val production = Production(name)
-    production.artists.add(artist)
     return productionRepository.save(production)
   }
 

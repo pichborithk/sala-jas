@@ -6,12 +6,31 @@ type Track {
     cover_url: String
     artist: String
 
-    artists: [Artist!]
-    album: Album
-    production: Production
+    artists: [TrackArtists!]
+    album: TrackAlbum
+    production: TrackProduction
+}
+
+type TrackArtists {
+    id: String!
+    name: String!
+}
+
+type TrackAlbum {
+    id: String!
+    title: String!
+}
+
+type TrackProduction {
+    id: String!
+    name: String!
 }
 
 extend type Query {
-    tracks: [Track!]
-    track(id: String!): Track
+    getTracks: [Track!]
+    getTrackById(id: String!): Track
+}
+
+extend type Mutation {
+    updateTrackArtist(trackId: String!, artistId: String!): Track
 }
