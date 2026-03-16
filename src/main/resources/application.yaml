@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: sala-jas
+  config:
+    import: optional:file:.env[.properties]
+  profiles:
+    active: ${SPRING_PROFILE:e0}
