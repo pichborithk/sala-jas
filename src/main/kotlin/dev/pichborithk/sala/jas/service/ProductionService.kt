@@ -43,4 +43,23 @@ class ProductionService(
       productionRepository.delete(it)
     }
   }
+
+  fun addTrackToProduction(id: String): Production? {
+    val production = productionRepository.findByIdOrNull(id)
+    production?.albums?.forEach {
+      it.id?.let { albumId ->
+        albumRepository.findByIdOrNull(albumId)?.let { album ->
+          album.tracks.forEach { albumTrack ->
+            albumTrack.id?.let { trackId ->
+              trackRepository.findByIdOrNull(trackId)?.let { track ->
+                track.production = production
+                trackRepository.save(track)
+              }
+            }
+          }
+        }
+      }
+    }
+    return production
+  }
 }
