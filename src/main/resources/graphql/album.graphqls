@@ -1,36 +1,36 @@
 type Album {
-    id: String!
+    id: String
     title: String!
 
     tracks: [AlbumTrack!]
     artists: [AlbumArtist!]
-    production: AlbumProduction!
+    production: AlbumProduction
 }
 
 type AlbumTrack {
-    id: String!
+    id: String
     title: String!
-    audio_url: String
-    download_url: String
-    cover_url: String
+    audioUrl: String
+    downloadUrl: String
+    coverUrl: String
     artist: String
     artists: [AlbumArtist!]
 }
 
 type AlbumArtist {
-    id: String!
+    id: String
     name: String!
 }
 
 type AlbumProduction {
-    id: String!
+    id: String
     name: String!
 }
 
 extend type Query {
-    getAlbumById(id: String!): Album!
+    getAlbumById(id: String!): Album
 }
 
-extend type Mutation {
-    #    addAlbumTracksToProduction(id: String!): Album!
-}
+#extend type Mutation {
+#        addAlbumTracksToProduction(id: String!): Album!
+#}

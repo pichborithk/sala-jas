@@ -1,5 +1,5 @@
 type Artist {
-    id: String!
+    id: String
     name: String!
 
     tracks: [ArtistTrack!]
@@ -8,27 +8,27 @@ type Artist {
 }
 
 type ArtistTrack {
-    id: String!
+    id: String
     title: String!
-    audio_url: String
-    download_url: String
-    cover_url: String
+    audioUrl: String
+    downloadUrl: String
+    coverUrl: String
     artist: String
 }
 
 type ArtistAlbum {
-    id: String!
+    id: String
     title: String!
 }
 
 type ArtistProduction {
-    id: String!
+    id: String
     name: String!
 }
 
 extend type Query {
-    artists: [Artist!]
-    artist(id: String!): Artist
+    getArtists: [Artist!]
+    getArtistById(id: String!): Artist
 }
 
 extend type Mutation {

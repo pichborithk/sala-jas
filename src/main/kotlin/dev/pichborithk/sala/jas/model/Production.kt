@@ -1,6 +1,7 @@
 package dev.pichborithk.sala.jas.model
 
 import jakarta.persistence.CascadeType
+import jakarta.persistence.Column
 import jakarta.persistence.Entity
 import jakarta.persistence.FetchType
 import jakarta.persistence.GeneratedValue
@@ -9,11 +10,19 @@ import jakarta.persistence.JoinColumn
 import jakarta.persistence.JoinTable
 import jakarta.persistence.ManyToMany
 import jakarta.persistence.OneToMany
+import jakarta.persistence.PreUpdate
 import org.hibernate.annotations.UuidGenerator
+import java.time.Instant
 
 @Entity(name = "productions")
 class Production(
-  var name: String
+
+  var name: String,
+  @Column(name = "created_at")
+  var createdAt: String = Instant.now().toString(),
+  @Column(name = "updated_at")
+  var updatedAt: String? = null
+
 ) {
 
   @Id
@@ -34,4 +43,9 @@ class Production(
     inverseJoinColumns = [JoinColumn(name = "artist_id")]
   )
   var artists: MutableList<Artist> = mutableListOf()
+
+  @PreUpdate
+  fun onUpdate() {
+    updatedAt = Instant.now().toString()
+  }
 }

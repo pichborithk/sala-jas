@@ -1,5 +1,5 @@
 type Production {
-    id: String!
+    id: String
     name: String!
 
     artists: [ProductionArtist!]
@@ -8,21 +8,21 @@ type Production {
 }
 
 type ProductionAlbums {
-    id: String!
+    id: String
     title: String!
 }
 
 type ProductionArtist {
-    id: String!
+    id: String
     name: String!
 }
 
 type ProductionTrack {
-    id: String!
+    id: String
     title: String!
-    audio_url: String
-    download_url: String
-    cover_url: String
+    audioUrl: String
+    downloadUrl: String
+    coverUrl: String
     artist: String
 }
 
@@ -50,13 +50,13 @@ type ProductionTrack {
 extend type Query {
     getProductions: [Production!]
 
-    getProductionById(id: String!): Production!
+    getProductionById(id: String!): Production
 }
 
-extend type Mutation {
-    createProduction(name: String!): Production!
-
-    deleteProductionById(id: String!): Production!
-
-    #    addTrackToProduction(id: String!): Production
-}
+#extend type Mutation {
+#    createProduction(name: String!): Production!
+#
+#    deleteProductionById(id: String!): Production!
+#
+#    addTrackToProduction(id: String!): Production
+#}

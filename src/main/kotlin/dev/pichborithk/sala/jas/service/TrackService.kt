@@ -1,18 +1,15 @@
 package dev.pichborithk.sala.jas.service
 
 import dev.pichborithk.sala.jas.model.Track
-import dev.pichborithk.sala.jas.repository.AlbumRepository
 import dev.pichborithk.sala.jas.repository.ArtistRepository
-import dev.pichborithk.sala.jas.repository.ProductionRepository
 import dev.pichborithk.sala.jas.repository.TrackRepository
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
+import java.time.Instant
 
 @Service
 class TrackService(
-  private final val productionRepository: ProductionRepository,
   private final val trackRepository: TrackRepository,
-  private final val albumRepository: AlbumRepository,
   private final val artistRepository: ArtistRepository,
 ) {
 
@@ -27,17 +24,42 @@ class TrackService(
       return null
     }
 
+//    track.artists.takeIf {
+//      artist !in it
+//    }?.add(artist)
+
     track.artists.takeIf {
       artist !in it
-    }?.add(artist)
+    }?.let {
+      it.add(artist)
+      track.updatedAt = Instant.now().toString()
+    }
 
-    track.album?.artists.takeIf {
-      it?.contains(artist) != true
-    }?.add(artist)
+//    track.album?.artists.takeIf {
+//      it?.contains(artist) != true
+//    }?.add(artist)
 
-    track.production?.artists.takeIf {
-      it?.contains(artist) != true
-    }?.add(artist)
+    track.album?.let { album ->
+      album.artists.takeIf {
+        artist !in it
+      }?.let {
+        it.add(artist)
+        album.updatedAt = Instant.now().toString()
+      }
+    }
+
+//    track.production?.artists.takeIf {
+//      it?.contains(artist) != true
+//    }?.add(artist)
+
+    track.production?.let { production ->
+      production.artists.takeIf {
+        artist !in it
+      }?.let {
+        it.add(artist)
+        production.updatedAt = Instant.now().toString()
+      }
+    }
 
     return trackRepository.save(track)
   }

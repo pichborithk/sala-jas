@@ -38,15 +38,15 @@ class ProductionResolver(
     return productionService.getProductionById(id)
   }
 
-  @MutationMapping
-  fun createProduction(@Argument name: String): Production {
-    return productionService.createProduction(name)
-  }
-
-  @MutationMapping
-  fun deleteProductionById(@Argument id: String): Production? {
-    return productionService.deleteProductionById(id)
-  }
+//  @MutationMapping
+//  fun createProduction(@Argument name: String): Production {
+//    return productionService.createProduction(name)
+//  }
+//
+//  @MutationMapping
+//  fun deleteProductionById(@Argument id: String): Production? {
+//    return productionService.deleteProductionById(id)
+//  }
 
 //  @MutationMapping
 //  fun addTrackToProduction(@Argument id: String): Production? {

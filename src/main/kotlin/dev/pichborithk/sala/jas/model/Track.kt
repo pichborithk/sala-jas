@@ -10,8 +10,9 @@ import jakarta.persistence.JoinColumn
 import jakarta.persistence.JoinTable
 import jakarta.persistence.ManyToMany
 import jakarta.persistence.ManyToOne
+import jakarta.persistence.PreUpdate
 import org.hibernate.annotations.UuidGenerator
-
+import java.time.Instant
 
 @Entity(name = "tracks")
 class Track(
@@ -26,8 +27,12 @@ class Track(
   var artist: String,
   @Column(name = "download_status")
   var downloadStatus: String,
+  @Column(name = "created_at")
+  var createdAt: String = Instant.now().toString(),
+  @Column(name = "updated_at")
+  var updatedAt: String? = null
 
-  ) {
+) {
 
   @Id
   @GeneratedValue
@@ -49,4 +54,9 @@ class Track(
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "production_id")
   var production: Production? = null
+
+  @PreUpdate
+  fun onUpdate() {
+    updatedAt = Instant.now().toString()
+  }
 }

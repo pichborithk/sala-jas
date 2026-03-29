@@ -1,9 +1,9 @@
 type Track {
-    id: String!
+    id: String
     title: String!
-    audio_url: String
-    download_url: String
-    cover_url: String
+    audioUrl: String
+    downloadUrl: String
+    coverUrl: String
     artist: String
 
     artists: [TrackArtists!]
@@ -12,22 +12,22 @@ type Track {
 }
 
 type TrackArtists {
-    id: String!
+    id: String
     name: String!
 }
 
 type TrackAlbum {
-    id: String!
+    id: String
     title: String!
 }
 
 type TrackProduction {
-    id: String!
+    id: String
     name: String!
 }
 
 extend type Query {
-    getTracks: [Track!]
+#    getTracks: [Track!]
     getTrackById(id: String!): Track
 }
 
