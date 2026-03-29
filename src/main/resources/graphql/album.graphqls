@@ -30,3 +30,7 @@ type AlbumProduction {
 extend type Query {
     getAlbumById(id: String!): Album!
 }
+
+extend type Mutation {
+    #    addAlbumTracksToProduction(id: String!): Album!
+}

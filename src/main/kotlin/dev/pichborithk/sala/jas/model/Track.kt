@@ -1,6 +1,7 @@
 package dev.pichborithk.sala.jas.model
 
 import jakarta.persistence.CascadeType
+import jakarta.persistence.Column
 import jakarta.persistence.Entity
 import jakarta.persistence.FetchType
 import jakarta.persistence.GeneratedValue
@@ -16,10 +17,15 @@ import org.hibernate.annotations.UuidGenerator
 class Track(
 
   var title: String,
-  var audio_url: String,
-  var download_url: String,
-  var cover_url: String,
+  @Column(name = "audio_url")
+  var audioUrl: String,
+  @Column(name = "download_url")
+  var downloadUrl: String,
+  @Column(name = "cover_url")
+  var coverUrl: String,
   var artist: String,
+  @Column(name = "download_status")
+  var downloadStatus: String,
 
   ) {
 

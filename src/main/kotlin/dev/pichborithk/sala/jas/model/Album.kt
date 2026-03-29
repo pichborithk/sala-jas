@@ -1,6 +1,7 @@
 package dev.pichborithk.sala.jas.model
 
 import jakarta.persistence.CascadeType
+import jakarta.persistence.Column
 import jakarta.persistence.Entity
 import jakarta.persistence.FetchType
 import jakarta.persistence.GeneratedValue
@@ -16,6 +17,8 @@ import org.hibernate.annotations.UuidGenerator
 class Album(
 
   var title: String,
+  @Column(name = "cover_url")
+  var coverUrl: String,
 
   ) {
 

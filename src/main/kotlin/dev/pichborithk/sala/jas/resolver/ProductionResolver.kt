@@ -47,4 +47,9 @@ class ProductionResolver(
   fun deleteProductionById(@Argument id: String): Production? {
     return productionService.deleteProductionById(id)
   }
+
+//  @MutationMapping
+//  fun addTrackToProduction(@Argument id: String): Production? {
+//    return productionService.addTrackToProduction(id)
+//  }
 }
